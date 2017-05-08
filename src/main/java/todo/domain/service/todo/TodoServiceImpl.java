@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,14 +17,8 @@ public class TodoServiceImpl implements TodoService {
 
     private static final long MAX_UNFINISHED_COUNT = 5;
 
-    // Because this repository has only 1 constructor, Annotation is not need ?
-    // https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-spring-beans-and-dependency-injection.html
-    // -> This is wrong. If Developer does not want to write annotation, Developer need to write constructor.
+    @Autowired
     TodoRepository todoRepository;
-
-    public TodoServiceImpl(TodoRepository todoRepository) {
-        this.todoRepository = todoRepository;
-    }
 
     @Override
     public Todo findOne(String todoId) {
