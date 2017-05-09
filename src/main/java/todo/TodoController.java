@@ -25,7 +25,6 @@ public class TodoController {
 
     @RequestMapping(value = "list")
     public String list(Model model) {
-        // TODO Injection
         Collection<Todo> todos = todoService.findAll();
         model.addAttribute("todos", todos);
 
