@@ -5,7 +5,13 @@
     <title>Insert title here</title>
 </head>
 <body>
-    <h1>Todo List /template/list</h1>
+    <h1>Todo List</h1>
+    <div id="todoForm">
+        <form action="#" th:action="@{/create}" th:object="${todoForm}" method="post">
+            <input type="text" th:field="*{todoTitle}"/>
+            <button type="submit">Create Todo</button>
+        </form>
+    </div>
     <hr />
     <div id="todoList">
         <ul>

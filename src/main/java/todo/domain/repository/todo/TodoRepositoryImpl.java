@@ -10,17 +10,7 @@ import todo.domain.model.Todo;
 
 @Repository
 public class TodoRepositoryImpl implements TodoRepository {
-    private static final Map<String, Todo> TODO_MAP = new ConcurrentHashMap<String, Todo>() {
-        /** Default serialize version */
-        private static final long serialVersionUID = 1L;
-
-        {
-            Todo defaultTodo = new Todo();
-            defaultTodo.setTodoId("1");
-            defaultTodo.setTodoTitle("Default Title");
-            put(defaultTodo.getTodoId(), defaultTodo);
-        };
-    };
+    private static final Map<String, Todo> TODO_MAP = new ConcurrentHashMap<String, Todo>();
 
     @Override
     public Todo findOne(String todoId) {
