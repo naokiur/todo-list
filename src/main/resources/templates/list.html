@@ -8,6 +8,10 @@
     <h1>Todo List</h1>
     <div id="todoForm">
         <form action="#" th:action="@{/create}" th:object="${todoForm}" method="post">
+            <ul th:if="${#fields.hasErrors('*')}">
+                <li th:each="error : ${#fields.errors('*')}" th:text="${error}">Error messages</li>
+            </ul>
+            <p th:text="${result}"></p>
             <input type="text" th:field="*{todoTitle}"/>
             <button type="submit">Create Todo</button>
         </form>

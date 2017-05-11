@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +23,9 @@ public class TodoController {
 
     @Autowired
     TodoService todoService;
+
+    @Autowired
+    MessageSource messageSource;
 
     @ModelAttribute
     public TodoForm setUpForm() {
@@ -40,9 +44,22 @@ public class TodoController {
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public String create(@Valid TodoForm todoForm, BindingResult bindingResult, Model model, RedirectAttributes attributes) {
 
+        if (bindingResult.hasErrors()) {
+            return list(model);
+        }
+
         Todo todo = new Todo();
         BeanUtils.copyProperties(todoForm, todo);
-        todoService.create(todo);
+
+
+        try {
+            todoService.create(todo);
+            // TODO Add Exception.
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        attributes.addFlashAttribute("result", "Created successfully!");
 
         return "redirect:list";
     }
