@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8" />
     <title>Insert title here</title>
+    <link href="/style.css" th:href="@{/style.css}" rel="stylesheet" />
 </head>
 <body>
     <h1>Todo List</h1>
     <div id="todoForm">
         <form action="#" th:action="@{/create}" th:object="${todoForm}" method="post">
-            <ul th:if="${#fields.hasErrors('*')}">
+            <ul th:if="${#fields.hasErrors('*')}" class="alert-error">
                 <li th:each="error : ${#fields.errors('*')}" th:text="${error}">Error messages</li>
             </ul>
-            <p th:text="${result}"></p>
+            <p th:text="${result}" class="alert-success"></p>
             <input type="text" th:field="*{todoTitle}"/>
             <button type="submit">Create Todo</button>
         </form>
