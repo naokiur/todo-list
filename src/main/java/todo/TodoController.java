@@ -2,7 +2,7 @@ package todo;
 
 import java.util.Collection;
 
-import javax.validation.Valid;
+import javax.validation.groups.Default;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +10,14 @@ import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import todo.TodoForm.TodoCreate;
+import todo.TodoForm.TodoFinish;
 import todo.domain.model.Todo;
 import todo.domain.service.todo.TodoService;
 
@@ -42,7 +45,8 @@ public class TodoController {
     }
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
-    public String create(@Valid TodoForm todoForm, BindingResult bindingResult, Model model, RedirectAttributes attributes) {
+    public String create(@Validated({Default.class, TodoCreate.class}) TodoForm todoForm, BindingResult bindingResult,
+            Model model, RedirectAttributes attributes) {
 
         if (bindingResult.hasErrors()) {
             return list(model);
@@ -50,7 +54,6 @@ public class TodoController {
 
         Todo todo = new Todo();
         BeanUtils.copyProperties(todoForm, todo);
-
 
         try {
             todoService.create(todo);
@@ -60,6 +63,26 @@ public class TodoController {
         }
 
         attributes.addFlashAttribute("result", "Created successfully!");
+
+        return "redirect:list";
+    }
+
+    @RequestMapping(value = "finish", method = RequestMethod.POST)
+    public String finish(@Validated({Default.class, TodoFinish.class}) TodoForm todoForm, BindingResult bindingResult,
+            Model model, RedirectAttributes attributes) {
+
+        if (bindingResult.hasErrors()) {
+            return list(model);
+        }
+
+        try {
+            todoService.finish(todoForm.getTodoId());
+            // TODO Add Exception.
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        attributes.addFlashAttribute("result", "Finished Successfully!");
 
         return "redirect:list";
     }

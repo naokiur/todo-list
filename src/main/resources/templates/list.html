@@ -20,7 +20,13 @@
     <hr />
     <div id="todoList">
         <ul th:each="todo : ${todos}" th:object="${todo}">
-            <li th:text="*{todoTitle}" th:class="${todo.finished}? 'strike' : ''">title</li>
+                <li th:class="${todo.finished}? 'strike' : ''">
+                    <span th:text="*{todoTitle}">title</span>
+                    <form action="#" th:action="@{finish}" th:object="${todoForm}" method="post" class="finish">
+                        <input type="hidden" name="todoId" th:value="${todo.todoId}" />
+                        <button type="submit">Finish</button>
+                    </form>
+                </li>
         </ul>
     </div>
 </body>
