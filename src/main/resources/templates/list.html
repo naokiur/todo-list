@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
-    <title>Insert title here</title>
-    <link href="/style.css" th:href="@{/style.css}" rel="stylesheet" />
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+<link href="/style.css" th:href="@{/style.css}" rel="stylesheet" />
 </head>
 <body>
     <h1>Todo List</h1>
@@ -13,16 +13,14 @@
                 <li th:each="error : ${#fields.errors('*')}" th:text="${error}">Error messages</li>
             </ul>
             <p th:text="${result}" class="alert-success"></p>
-            <input type="text" th:field="*{todoTitle}"/>
+            <input type="text" th:field="*{todoTitle}" />
             <button type="submit">Create Todo</button>
         </form>
     </div>
     <hr />
     <div id="todoList">
-        <ul>
-            <li th:each="todo : ${todos}">
-                <span th:text="${todo.todoTitle}"></span>
-            </li>
+        <ul th:each="todo : ${todos}" th:object="${todo}">
+            <li th:text="*{todoTitle}" th:class="${todo.finished}? 'strike' : ''">title</li>
         </ul>
     </div>
 </body>
