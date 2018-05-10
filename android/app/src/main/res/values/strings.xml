@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">TodoManagement</string>
+    <string name="app_name">ToDoManagement</string>
+    <string name="action_settings">Settings</string>
 </resources>
