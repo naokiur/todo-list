@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="55dp"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentTop="true"
+    android:layout_marginTop="32dp"
+    android:layout_height="675dp"
+    android:background="@drawable/menu">
+    <TextView
+        android:id="@+id/icon_add"
+        android:layout_width="29dp"
+        android:layout_height="33.24dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="12dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="55.08dp"
+        android:text="@string/icon_plus"
+        android:textAppearance="@style/icon"
+        />
+    <TextView
+        android:id="@+id/icon_list"
+        android:layout_width="36dp"
+        android:layout_height="33.24dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="8dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="109.57dp"
+        android:text="@string/icon_list"
+        android:textAppearance="@style/icon"
+        />
+    <TextView
+        android:id="@+id/icon_top"
+        android:layout_width="39dp"
+        android:layout_height="36dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="7dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="165dp"
+        android:text="@string/icon_tv"
+        android:textAppearance="@style/icon"
+        />
+
+</RelativeLayout>
