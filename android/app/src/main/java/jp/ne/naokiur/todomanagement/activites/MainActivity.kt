@@ -1,28 +1,56 @@
-package jp.ne.naokiur.todomanagement
+package jp.ne.naokiur.todomanagement.activites
 
 import android.graphics.Typeface
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.TextView
+import android.widget.Toast
+import android.widget.Toast.LENGTH_LONG
+import jp.ne.naokiur.todomanagement.R
+import jp.ne.naokiur.todomanagement.models.TaskModel
+import jp.ne.naokiur.todomanagement.strage.TasksDatabaseHelper
+import kotlinx.android.synthetic.main.component_menu.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val font = Typeface.createFromAsset(assets, "fa-solid-900.ttf")
-        val iconAdd = findViewById<TextView>(R.id.icon_add)
-        val iconList = findViewById<TextView>(R.id.icon_list)
-        val iconTop = findViewById<TextView>(R.id.icon_top)
-        iconAdd.typeface = font
-        iconList.typeface = font
-        iconTop.typeface = font
+        val taskDatabaseHelper = TasksDatabaseHelper(this)
+        initFont()
+
+        icon_add.setOnClickListener { view ->
+            val task = TaskModel(
+                    "test",
+                    TaskModel.Status.DOING.value,
+                    Calendar.getInstance().timeInMillis,
+                    Calendar.getInstance().timeInMillis,
+                    Calendar.getInstance().timeInMillis
+            )
+            val result = taskDatabaseHelper.insertTask(task)
+
+            if (result) {
+                Toast.makeText(this, "new Task Added!", LENGTH_LONG).show()
+            }
+
+        }
 //        setSupportActionBar(toolbar)
 
 //        fab.setOnClickListener { view ->
 //            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                    .setAction("Action", null).show()
         }
+    private fun initFont() {
+        val font = Typeface.createFromAsset(assets, "fa-solid-900.ttf")
+        val iconAdd = findViewById<TextView>(R.id.icon_add)
+        val iconList = findViewById<TextView>(R.id.icon_list)
+        val iconTop = findViewById<TextView>(R.id.icon_top)
+
+        iconAdd.typeface = font
+        iconList.typeface = font
+        iconTop.typeface = font
+    }
 //    }
 
 //    override fun onCreateOptionsMenu(menu: Menu): Boolean {
