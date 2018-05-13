@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/add_screen"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#E0E0E0">
+
+    <include
+        android:id="@+id/title"
+        layout="@layout/component_title" />
+
+    <include
+        android:id="@+id/menu"
+        layout="@layout/component_menu" />
+
+    <!--<View-->
+    <!--android:id="@+id/new_task"-->
+    <!--android:layout_width="356dp"-->
+    <!--android:layout_height="313dp"-->
+    <!--android:layout_alignParentStart="true"-->
+    <!--android:layout_marginStart="55dp"-->
+    <!--android:layout_alignParentTop="true"-->
+    <!--android:layout_marginTop="33dp"-->
+    <!--android:background="@drawable/new_task">-->
+
+    <!--</View>-->
+    <TextView
+        android:id="@+id/add_new_task"
+        android:layout_width="174dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="69dp"
+        android:layout_marginTop="58dp"
+        android:text="@string/add_new_task"
+        android:textAppearance="@style/add_new_task" />
+
+    <EditText
+        android:id="@+id/task_name"
+        android:layout_width="253dp"
+        android:layout_height="44.54dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="109dp"
+        android:layout_marginTop="106dp"
+        android:background="@drawable/input_item" />
+
+    <TextView
+        android:id="@+id/begin_date"
+        android:layout_width="253dp"
+        android:layout_height="44.54dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="109dp"
+        android:layout_marginTop="166.73dp"
+        android:background="@drawable/input_item" />
+
+    <TextView
+        android:id="@+id/limit_date"
+        android:layout_width="253dp"
+        android:layout_height="44.54dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="109dp"
+        android:layout_marginTop="227.46dp"
+        android:background="@drawable/input_item" />
+
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="341dp"
+        android:layout_height="45dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="63dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="296dp"
+        android:background="@drawable/save_button"
+        />
+
+</RelativeLayout>
+
