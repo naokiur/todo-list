@@ -1,4 +1,4 @@
-package jp.ne.naokiur.todomanagement.activites
+package jp.ne.naokiur.todomanagement.activities
 
 import android.content.Intent
 import android.graphics.Typeface

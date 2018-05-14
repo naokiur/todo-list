@@ -1,4 +1,4 @@
-package jp.ne.naokiur.todomanagement.activites
+package jp.ne.naokiur.todomanagement.activities
 
 import android.app.DatePickerDialog
 import android.os.Bundle
