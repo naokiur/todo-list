@@ -19,7 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activites.AddActivity"></activity>
+        <activity
+            android:name=".activites.AddActivity"
+            android:theme="@style/NoTitleDialog" />
     </application>
 
 </manifest>

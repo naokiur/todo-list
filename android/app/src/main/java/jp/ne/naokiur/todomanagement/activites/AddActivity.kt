@@ -1,10 +1,8 @@
 package jp.ne.naokiur.todomanagement.activites
 
 import android.app.DatePickerDialog
-import android.graphics.Typeface
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.widget.TextView
 import android.widget.Toast
 import jp.ne.naokiur.todomanagement.R
 import jp.ne.naokiur.todomanagement.models.TaskModel
@@ -18,7 +16,6 @@ class AddActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
-        initFont()
 
         val cal = Calendar.getInstance()
         val format = "yyyy/MM/dd"
@@ -82,16 +79,5 @@ class AddActivity : AppCompatActivity() {
 
             Toast.makeText(this, "Added new Task!", Toast.LENGTH_LONG).show()
         }
-    }
-
-    private fun initFont() {
-        val font = Typeface.createFromAsset(assets, "fa-solid-900.ttf")
-        val iconAdd = findViewById<TextView>(R.id.icon_add)
-        val iconList = findViewById<TextView>(R.id.icon_list)
-        val iconTop = findViewById<TextView>(R.id.icon_top)
-
-        iconAdd.typeface = font
-        iconList.typeface = font
-        iconTop.typeface = font
     }
 }
