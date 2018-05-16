@@ -1,19 +1,26 @@
-<?xml version="1.0" encoding="utf-8"?><!--<selector xmlns:android="http://schemas.android.com/apk/res/android">--><!--</selector>-->
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#C4C4C4" />
+        </shape>
+    </item>
+</selector>
 
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="33dp"
-    android:height="33dp"
-    android:viewportHeight="33"
-    android:viewportWidth="33">
+<!--<vector xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:width="33dp"-->
+    <!--android:height="33dp"-->
+    <!--android:viewportHeight="33"-->
+    <!--android:viewportWidth="33">-->
 
-    <group>
+    <!--<group>-->
 
-        <clip-path android:pathData="M 33 16.5C 33 25.6127 25.6127 33 16.5 33C 7.3873 33 0 25.6127 0 16.5C 0 7.3873 7.3873 0 16.5 0C 25.6127 0 33 7.3873 33 16.5Z" />
+        <!--<clip-path android:pathData="M 33 16.5C 33 25.6127 25.6127 33 16.5 33C 7.3873 33 0 25.6127 0 16.5C 0 7.3873 7.3873 0 16.5 0C 25.6127 0 33 7.3873 33 16.5Z" />-->
 
-        <path
-            android:fillColor="#C4C4C4"
-            android:pathData="M 0 0L 0 33L 33 33L 33 0" />
+        <!--<path-->
+            <!--android:fillColor="#C4C4C4"-->
+            <!--android:pathData="M 0 0L 0 33L 33 33L 33 0" />-->
 
-    </group>
+    <!--</group>-->
 
-</vector>
+<!--</vector>-->

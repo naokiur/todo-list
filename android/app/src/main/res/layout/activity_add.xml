@@ -17,13 +17,13 @@
 
     <!--</View>-->
     <TextView
-        android:id="@+id/add_new_task"
+        android:id="@+id/add_new_task_label"
         android:layout_width="174dp"
         android:layout_height="28dp"
         android:layout_marginStart="69dp"
         android:layout_marginTop="58dp"
         android:text="@string/add_new_task"
-        android:textAppearance="@style/add_new_task" />
+        android:textAppearance="@style/dialog_label" />
 
     <EditText
         android:id="@+id/task_name"

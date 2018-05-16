@@ -2,6 +2,7 @@ package jp.ne.naokiur.todomanagement.strage
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
@@ -22,6 +23,37 @@ class TasksDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE
         val rowId = db.insert(DBContract.TaskEntry.TABLE_NAME, null, values)
 
         return true
+    }
+
+    fun selectAll(): ArrayList<TaskModel> {
+        val db = readableDatabase
+        val taskList: ArrayList<TaskModel> = ArrayList()
+        var cursor: Cursor? = null
+
+        try {
+            cursor = db.rawQuery("SELECT * FROM " + DBContract.TaskEntry.TABLE_NAME, null)
+
+        } catch (e: SQLiteException) {
+            return ArrayList()
+        }
+
+        if (cursor!!.moveToFirst()) {
+            while (!cursor.isAfterLast) {
+
+                val taskModel = TaskModel(
+                        cursor.getString(cursor.getColumnIndex(DBContract.TaskEntry.TASK_NAME)),
+                        cursor.getString(cursor.getColumnIndex(DBContract.TaskEntry.STATUS)),
+                        cursor.getLong(cursor.getColumnIndex(DBContract.TaskEntry.BEGIN_DATE)),
+                        cursor.getLong(cursor.getColumnIndex(DBContract.TaskEntry.END_DATE)),
+                        cursor.getLong(cursor.getColumnIndex(DBContract.TaskEntry.UPDATE_TIME))
+                )
+
+                taskList.add(taskModel)
+                cursor.moveToNext()
+            }
+        }
+
+        return taskList
     }
 
     override fun onCreate(db: SQLiteDatabase?) {

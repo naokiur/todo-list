@@ -20,6 +20,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, AddActivity::class.java)
             startActivity(intent)
         }
+
+        icon_list.setOnClickListener { _ ->
+            val intent = Intent(this, ListActivity::class.java)
+            startActivity(intent)
+        }
 //        setSupportActionBar(toolbar)
 
 //        fab.setOnClickListener { view ->

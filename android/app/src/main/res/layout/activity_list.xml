@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/add_screen"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#E0E0E0">
+
+    <TextView
+        android:id="@+id/task_list_label"
+        android:layout_width="174dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="69dp"
+        android:layout_marginTop="58dp"
+        android:text="@string/task_lists"
+        android:textAppearance="@style/dialog_label" />
+
+    <ListView
+        android:id="@+id/task_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="69dp"
+        android:layout_below="@+id/task_list_label">
+
+    </ListView>
+
+</RelativeLayout>
+

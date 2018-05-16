@@ -53,7 +53,7 @@
         </item>
     </style>
 
-    <style name="add_new_task">
+    <style name="dialog_label">
         <item name="android:textSize">
             24sp
         </item>

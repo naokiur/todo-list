@@ -22,6 +22,9 @@
         <activity
             android:name=".activities.AddActivity"
             android:theme="@style/NoTitleDialog" />
+        <activity
+            android:name=".activities.ListActivity"
+            android:theme="@style/NoTitleDialog" />
     </application>
 
 </manifest>
