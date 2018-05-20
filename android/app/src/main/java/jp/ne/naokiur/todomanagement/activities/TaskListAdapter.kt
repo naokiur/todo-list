@@ -8,6 +8,8 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import jp.ne.naokiur.todomanagement.R
 import jp.ne.naokiur.todomanagement.models.TaskModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 class TaskListAdapter(context: Context, taskList: ArrayList<TaskModel>) : BaseAdapter() {
     val layoutInflater: LayoutInflater
@@ -31,23 +33,27 @@ class TaskListAdapter(context: Context, taskList: ArrayList<TaskModel>) : BaseAd
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var v = convertView
-        var holder: CustomViewHolder? = null
-        System.out.println("getView Now")
+        var taskNameHolder: CustomViewHolder? = null
+        var limitDateHolder: CustomViewHolder? = null
+        var taskStateHolder: CustomViewHolder? = null
 
         v?.let {
-            holder = it.tag as CustomViewHolder?
-            System.out.println("holder Now")
+            taskNameHolder = it.tag as CustomViewHolder?
+
         } ?: kotlin.run {
             v = layoutInflater.inflate(R.layout.component_task_row, null)
-            holder = CustomViewHolder(v?.findViewById(R.id.task_name) as TextView)
-            v?.tag = holder
-            System.out.println("run Now")
+            taskNameHolder = CustomViewHolder(v?.findViewById(R.id.task_name) as TextView)
+            limitDateHolder = CustomViewHolder(v?.findViewById(R.id.limit_date) as TextView)
+            v?.tag = taskNameHolder
         }
 
-        holder?.let {
+        taskNameHolder?.let {
             it.textView.text = taskList[position].name
-            System.out.println(taskList[position].name)
+        }
 
+        limitDateHolder?.let {
+            val sdf = SimpleDateFormat("yyyy/MM/dd", Locale.JAPANESE)
+            it.textView.text = sdf.format(taskList[position].endDate)
         }
 
         return v as View
