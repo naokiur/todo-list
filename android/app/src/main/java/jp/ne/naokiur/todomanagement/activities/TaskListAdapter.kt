@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.CheckBox
 import android.widget.TextView
 import jp.ne.naokiur.todomanagement.R
 import jp.ne.naokiur.todomanagement.models.TaskModel
@@ -33,31 +34,33 @@ class TaskListAdapter(context: Context, taskList: ArrayList<TaskModel>) : BaseAd
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var v = convertView
-        var taskNameHolder: CustomViewHolder? = null
-        var limitDateHolder: CustomViewHolder? = null
-        var taskStateHolder: CustomViewHolder? = null
+        var customViewHolder: CustomViewHolder? = null
 
         v?.let {
-            taskNameHolder = it.tag as CustomViewHolder?
+            customViewHolder = it.tag as CustomViewHolder?
 
         } ?: kotlin.run {
             v = layoutInflater.inflate(R.layout.component_task_row, null)
-            taskNameHolder = CustomViewHolder(v?.findViewById(R.id.task_name) as TextView)
-            limitDateHolder = CustomViewHolder(v?.findViewById(R.id.limit_date) as TextView)
-            v?.tag = taskNameHolder
+            customViewHolder = CustomViewHolder(
+                    v?.findViewById(R.id.task_name) as TextView,
+                    v?.findViewById(R.id.limit_date) as TextView,
+                    v?.findViewById(R.id.task_state) as CheckBox
+            )
+
+            v?.tag = customViewHolder
         }
 
-        taskNameHolder?.let {
-            it.textView.text = taskList[position].name
-        }
+        customViewHolder?.let {
+            it.taskName.text = taskList[position].name
 
-        limitDateHolder?.let {
             val sdf = SimpleDateFormat("yyyy/MM/dd", Locale.JAPANESE)
-            it.textView.text = sdf.format(taskList[position].endDate)
+            it.limitDate.text = sdf.format(taskList[position].endDate)
+
+            it.checkBox.setChecked(TaskModel.Status.fromValue(taskList[position].status).isDone)
         }
 
         return v as View
     }
 
-    class CustomViewHolder(var textView: TextView)
+    class CustomViewHolder(var taskName: TextView, var limitDate: TextView, var checkBox: CheckBox)
 }
