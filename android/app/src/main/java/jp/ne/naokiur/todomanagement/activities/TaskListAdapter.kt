@@ -9,10 +9,12 @@ import android.widget.CheckBox
 import android.widget.TextView
 import jp.ne.naokiur.todomanagement.R
 import jp.ne.naokiur.todomanagement.models.TaskModel
+import jp.ne.naokiur.todomanagement.strage.TasksDatabaseHelper
 import java.text.SimpleDateFormat
 import java.util.*
 
 class TaskListAdapter(context: Context, taskList: ArrayList<TaskModel>) : BaseAdapter() {
+    val context: Context = context
     val layoutInflater: LayoutInflater
     val taskList = taskList
 
@@ -53,10 +55,20 @@ class TaskListAdapter(context: Context, taskList: ArrayList<TaskModel>) : BaseAd
         customViewHolder?.let {
             it.taskName.text = taskList[position].name
 
+
             val sdf = SimpleDateFormat("yyyy/MM/dd", Locale.JAPANESE)
             it.limitDate.text = sdf.format(taskList[position].endDate)
 
-            it.checkBox.setChecked(TaskModel.Status.fromValue(taskList[position].status).isDone)
+            it.checkBox.isChecked = TaskModel.Status.fromValue(taskList[position].status).isDone
+
+            it.checkBox.setOnClickListener { _ ->
+                val taskDatabaseHelper = TasksDatabaseHelper(context)
+                taskDatabaseHelper.updateCheck(
+                        taskList[position].id,
+                        TaskModel.Status.fromIsDone(it.checkBox.isChecked).value
+                )
+
+            }
         }
 
         return v as View

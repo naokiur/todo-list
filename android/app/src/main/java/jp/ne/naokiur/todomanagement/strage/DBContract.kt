@@ -6,6 +6,7 @@ object DBContract {
 
     class TaskEntry : BaseColumns {
         companion object {
+            const val ID = BaseColumns._ID
             const val TABLE_NAME = "tasks"
             const val TASK_NAME = "task_name"
             const val STATUS = "status"

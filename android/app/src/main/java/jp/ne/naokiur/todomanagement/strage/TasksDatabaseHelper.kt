@@ -25,6 +25,22 @@ class TasksDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE
         return true
     }
 
+    fun updateCheck(id: Long, status: String): Boolean {
+        val db = writableDatabase
+
+        val values = ContentValues()
+        values.put(DBContract.TaskEntry.STATUS, status)
+
+        db.update(
+                DBContract.TaskEntry.TABLE_NAME,
+                values,
+                DBContract.TaskEntry.ID + " = ?",
+                arrayOf(id.toString())
+        )
+
+        return true
+    }
+
     fun selectAll(): ArrayList<TaskModel> {
         val db = readableDatabase
         val taskList: ArrayList<TaskModel> = ArrayList()
@@ -41,6 +57,7 @@ class TasksDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE
             while (!cursor.isAfterLast) {
 
                 val taskModel = TaskModel(
+                        cursor.getLong(cursor.getColumnIndex(DBContract.TaskEntry.ID)),
                         cursor.getString(cursor.getColumnIndex(DBContract.TaskEntry.TASK_NAME)),
                         cursor.getString(cursor.getColumnIndex(DBContract.TaskEntry.STATUS)),
                         cursor.getLong(cursor.getColumnIndex(DBContract.TaskEntry.BEGIN_DATE)),
@@ -75,6 +92,7 @@ class TasksDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE
 
         private const val SQL_CREATE_ENTRIES =
                 "CREATE TABLE " + DBContract.TaskEntry.TABLE_NAME + " (" +
+                        DBContract.TaskEntry.ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                         DBContract.TaskEntry.TASK_NAME + " TEXT ," +
                         DBContract.TaskEntry.STATUS + " TEXT," +
                         DBContract.TaskEntry.BEGIN_DATE + " INTEGER," +
