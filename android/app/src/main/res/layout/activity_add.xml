@@ -64,6 +64,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="296dp"
         android:background="@drawable/save_button"
+        android:text="@string/button_task_add"
+        android:textAppearance="@style/add_button"
         />
 
 </RelativeLayout>

@@ -7,5 +7,6 @@
     <string name="icon_tv">&#xf26c;</string>
     <string name="add_new_task">Add new Task</string>
     <string name="task_lists">Task lists</string>
+    <string name="button_task_add">Add</string>
 
 </resources>
