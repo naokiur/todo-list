@@ -1,6 +1,7 @@
 package jp.ne.naokiur.todomanagement.activities
 
 import android.content.Context
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,7 +56,6 @@ class TaskListAdapter(context: Context, taskList: ArrayList<TaskModel>) : BaseAd
         customViewHolder?.let {
             it.taskName.text = taskList[position].name
 
-
             val sdf = SimpleDateFormat("yyyy/MM/dd", Locale.JAPANESE)
             it.limitDate.text = sdf.format(taskList[position].endDate)
 
@@ -67,7 +67,11 @@ class TaskListAdapter(context: Context, taskList: ArrayList<TaskModel>) : BaseAd
                         taskList[position].id,
                         TaskModel.Status.fromIsDone(it.checkBox.isChecked).value
                 )
+            }
 
+            if (it.checkBox.isChecked) {
+                it.taskName.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+                it.limitDate.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             }
         }
 
